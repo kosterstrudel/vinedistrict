@@ -1,0 +1,163 @@
+  <div class="sixteen columns clearfix collection_nav">
+    <h1 class="center">{{ 'cart.general.title' | t }}</h1>
+    <div class="feature_divider"></div>
+  </div>
+
+  {% if cart.item_count == 0 %}
+    <div class="sixteen columns">
+      <div class="section clearfix">
+        <p class="quote">{{ 'cart.general.continue_browsing_html' | t }}</p>  
+        <br class="clear" />
+
+        {% assign collection = '' %}
+        {% assign products = collections[settings.frontpage_collection].products %}
+        {% assign products_per_row = settings.frontpage_products_per_row %}
+        {% include 'product-loop' %}
+      </div>
+    </div>
+  {% else %}
+
+  <form action="/cart" method="post" id="cart_form">        
+    <div class="section clearfix">  
+      <div class="ten columns cart_items">
+        <h4 class="title">{{ 'cart.general.products' | t }}</h4>
+        <script>mixed_cart = false;</script>
+        {% for item in cart.items %}
+          <div class="five columns alpha">
+          {% include 'bold-ro-price-fix' %}
+            {% assign prod_index = forloop.index0 %}
+            <input type="hidden" name="product_id[{{ forloop.index0 }}]" value="{{ item.product.id }}">
+            <input type="hidden" name="variant_id[{{ forloop.index0 }}]" value="{{ item.variant.id }}">
+            <input type="hidden" name="quantity[{{ forloop.index0 }}]" value="{{ item.quantity }}">
+            <a href="{{ item.url }}" title="{{ item.title | escape }}" class="cart_page_image">       
+              <img src="{{ 'loader.gif' | asset_url }}" data-src="{{ item | img_url: 'medium' }}" data-src-retina="{{ item | img_url: 'grande' }}" alt="{{ item.title | escape }}" />
+            </a>
+          </div>
+
+          <div class="five columns omega">
+            <p>
+              <a href="{{ item.url }}" title="{{ item.title | escape }}">{{ item.title }}</a>
+              <!-- bold-ro-liquid -->
+                {% if item.properties.frequency_num %}
+                  <script>mixed_cart = true;</script>
+                  <br>
+                  <span class="bold_ro_every">Every</span>
+                  <input type="hidden" name="{{ prod_index }}[number]" value="{{ item.properties.frequency_num }}" />
+                  <span class="bold_ro_frequency_num">{{ item.properties.frequency_num }}</span>
+                {% endif %}
+                {% if item.properties.frequency_type %}
+                  <input type="hidden" name="{{ prod_index }}[type_id]" value="{{ item.properties.frequency_type }}" />
+                {% endif %}
+                {% if item.properties.frequency_type_text %}
+                  <span class="bold_ro_frequency_type_text">{{ item.properties.frequency_type_text }}</span>
+                {% endif %}
+                {% if item.properties.group_id %}
+                  <input type="hidden" name="{{ prod_index }}[group_id]" value="{{ item.properties.group_id }}" />
+                {% endif %}
+                {% if item.properties._ro_unformatted_price %}
+                  <br><span class="bold_ro_discounted_price">Discounted Price</span>
+                  <span class="discounted_price_in_cart">{{ item.properties._ro_unformatted_price | money }}</span> <span class="bold_ro_each">each</span>
+                {% endif %}
+                <!-- bold-ro-liquid -->
+            </p> 
+            
+     
+
+            <p class="price_total">
+              {% if ro_item_price > 0 %} 
+                {{ ro_item_price | money_with_currency }}
+              {% else %}
+                {{ settings.free_price_text }}
+              {% endif %}
+            </p>
+
+            <p id="quantity_{{ forloop.index }}">
+              <label for="updates_{{ item.id }}" class="quantity_label">{{ 'cart.general.quantity' | t }}:</label>
+              <input type="number" min="0" size="3" maxlength="3" class="quantity" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+            </p>
+
+            <p class="remove_item">
+              <a class="bold-ro-remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0" title="{{ 'cart.general.remove' | t }}">{{ 'cart.general.remove' | t }}</a>
+            </p>
+          </div>
+          <br class="clear" />
+          <br class="clear" />
+        {% endfor %}
+      </div>
+
+      <div class="five columns offset-by-one">
+        <h4 class="subtotal">
+          {{ 'cart.general.subtotal' | t }}
+        </h4>
+
+        <p class="subtotal_amount">
+          <strong>{{ ro_cart_total | money_with_currency }}</strong> 
+          {% comment %}
+          <small id="estimated-shipping" style="display:none">+ <em>{{ 0 | money }} {{ 'cart.shipping_calculator.estimated_shipping' | t }}</em></small>
+          {% endcomment %}
+
+          {% unless settings.tax_included %}
+            <small class="excluding_tax"><em>{{ 'cart.general.excluding_tax_shipping' | t }}</em></small>
+          {% endunless %}
+        </p>
+
+        {% if settings.show_multiple_currencies %}
+          <p>
+            <small>
+              {{ 'cart.general.orders_processed_in_currency_html' | t: currency: shop.currency }}
+            </small>
+          </p>
+        {% endif %}
+
+        {% if settings.display_special_instructions %} 
+          <label for="note">{{ 'cart.general.note' | t: shop_name: shop.name }}:</label>
+          <textarea id="note" name="note" rows="2">{{ cart.note }}</textarea>        
+        {% endif %}
+
+        {% if settings.display_tos_checkbox %}
+          <p>
+            <input type="checkbox" class="tos_agree" id="cart_agree" />
+            <label class="tos_label" for="cart_agree">
+              {{ 'cart.general.agree_to_terms_html' | t }}
+            </label>
+          </p>
+        {% endif %}
+
+            <p>
+          <input name="shopify_customer_id" type="hidden" value="{{ customer.id }}" > 
+          <input name="email" type="hidden" value="{{ customer.email }}" > 
+          <input name="address1" type="hidden" value="{{ customer.default_address.address1 }}" > 
+          <input name="address2" type="hidden" value="{{ customer.default_address.address2 }}" > 
+          <input name="city" type="hidden" value="{{ customer.default_address.city }}" > 
+          <input name="company" type="hidden" value="{{ customer.default_address.company }}" > 
+          <input name="country" type="hidden" value="{{ customer.default_address.country }}" > 
+          <input name="first_name" type="hidden" value="{{ customer.default_address.first_name }}" > 
+          <input name="last_name" type="hidden" value="{{ customer.default_address.last_name }}" > 
+          <input name="phone" type="hidden" value="{{ customer.default_address.phone }}" > 
+          <input name="province" type="hidden" value="{{ customer.default_address.province }}" > 
+          <input name="zip" type="hidden" value="{{ customer.default_address.zip }}" >
+          {% include 'bold-ro-cart' %}
+        </p>
+        <p>
+          <input type="submit" class="action_button add_to_cart addtocart" id="checkout" name="checkout" value="{{ 'cart.general.checkout' | t }}" />
+        </p>
+        
+        <p class="center">
+          {{ content_for_additional_checkout_buttons | google_button_options: 'transparent' }}
+        </p>
+
+    
+
+        {% if cart.item_count > 0 %}
+          <div class="continue_shopping">
+            <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}">{{ 'cart.general.continue_shopping_link_html' | t }}</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </form>
+  
+  {% include 'cart-shipping-calculator' %}
+  <br class="clear" />
+  <br class="clear" />
+{% endif %}
