@@ -165,6 +165,15 @@ $(function() {
     return false;
   });
 
+  $(document).ready(function(){
+
+   $('#gift_field').hide();
+   $('#this-purchase-is-a-gift').click(function() {
+    $("#gift_field").toggle(this.checked);
+});   
+
+});
+
   $('#search-toggle, .search-close').on('click', function(e) {
     $('.search-close, .search-submit').css('padding-top', $('.header').height() + 50 + 'px')
     if($('#search').is(":visible") && $(window).scrollTop() == 0) {
