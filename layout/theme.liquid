@@ -151,8 +151,54 @@
                       {% endif %}
                       <div class="item_title">{{ item.title }}</div>
                       <strong class="price">{{ item.price | money }}</strong>
+                      <!-- <div class="gift_note_container">                  
+                      {% for p in item.properties %}
+                        {% unless p.last == blank %}
+                          {% if p.first == 'is-this-a-gift' %}   
+                              {{ p.first }}
+                              {{ p.last }}                          
+                          {% endif %}
+                        {% endunless %}
+                      {% endfor %}
+                        {% assign property_size = item.properties | size %}
+                            {% if property_size > 0 %}                            
+                                {% for p in item.properties %}
+                                    <p><strong>{{ p.first }}:</strong> {{ p.last }}</p>   
+                                    <br>                                     
+                                {% endfor %}
+                            {% endif %}
+                      </div> -->
+
+                      <div class="gift_note_container"> 
+                        {% for p in item.properties %}
+                          {% if p.first == 'is-this-a-gift' %}
+                            {% unless p.last == blank %}
+                              {% if (p.last == 'Yes') %}
+                                <div id="hide_gift_note_boolean">
+                                  <span class="temp">Is this a fucking note? </span>
+                                  <span>{{ p.last }}</span>
+                                </div>                            
+                              {% endif %}
+                            {% endunless %}
+                          {% endif %}
+
+                          {% unless p.last == blank or p.first == "is-this-a-gift" or p.first == "note" %}
+                            {{ p.first }}:
+                            {% if p.last contains '/uploads/' %}
+                              <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                            {% else %}
+                              {{ p.last }}
+                            {% endif %}
+                            <br>
+                          {% endunless %}
+                        {% endfor %}
+                        </div>
+
+                  
                     </a>
+
                   </li>
+
                 {% endfor %}
                 <li class="mm-label">
                   <p class="mm-counter">{{ cart.total_price | money }}</p>

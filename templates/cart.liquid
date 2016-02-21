@@ -23,18 +23,37 @@
         <h4 class="title">{{ 'cart.general.products' | t }}</h4>
         <script>mixed_cart = false;</script>
         {% for item in cart.items %}
-          <div class="five columns alpha">
+          <div class="three columns alpha">
           {% include 'bold-ro-price-fix' %}
             {% assign prod_index = forloop.index0 %}
             <input type="hidden" name="product_id[{{ forloop.index0 }}]" value="{{ item.product.id }}">
             <input type="hidden" name="variant_id[{{ forloop.index0 }}]" value="{{ item.variant.id }}">
             <input type="hidden" name="quantity[{{ forloop.index0 }}]" value="{{ item.quantity }}">
-            <a href="{{ item.url }}" title="{{ item.title | escape }}" class="cart_page_image">       
-              <img src="{{ 'loader.gif' | asset_url }}" data-src="{{ item | img_url: 'medium' }}" data-src-retina="{{ item | img_url: 'grande' }}" alt="{{ item.title | escape }}" />
+            <a href="{{ item.url }}" title="{{ item.title | escape }}" class="cart_page_image">               
+              <img src="{{ 'loader.gif' | asset_url }}" data-src="{{ item | img_url: 'small' }}" data-src-retina="{{ item | img_url: 'grande' }}" alt="{{ item.title | escape }}" />
             </a>
           </div>
 
-          <div class="five columns omega">
+          <div class="three columns">
+            <p>              
+              {% assign property_size = item.properties | size %}
+                  {% if property_size > 0 %}
+                    {% for p in item.properties %}
+                      {% unless p.last == blank %}
+                        {{ p.first }}:
+                        {% if p.last contains '/uploads/' %}
+                          <a class="lightbox" href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                        {% else %}
+                          {{ p.last }}
+                        {% endif %}
+                        <br>
+                      {% endunless %}
+                    {% endfor %}
+                {% endif %}
+              </p>
+            </div>
+
+          <div class="three columns omega">
             <p>
               <a href="{{ item.url }}" title="{{ item.title | escape }}">{{ item.title }}</a>
               <!-- bold-ro-liquid -->
