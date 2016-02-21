@@ -53,11 +53,7 @@
         <label for="quantity">{{ 'products.product.quantity' | t }}</label>        
         <input type="number" min="1" size="2" class="quantity" name="quantity" id="quantity" value="1" {% if product.variants.first.inventory_management == 'shopify' and product.variants.first.inventory_quantity > 0 and product.variants.first.inventory_policy == "deny" %}max="{{ product.variants.first.inventory_quantity }}"{% endif %} />
       </div>
-    {% endif %}
-    <p class="line-item-property__field">
-      <label for="note">Note for Recipient</label>
-      <textarea id="note" name="properties[Note]"></textarea>
-    </p>
+    {% endif %}    
     <div class="purchase clearfix {% if settings.display_product_quantity %}inline_purchase{% endif %}">
       {% if settings.cart_action == 'reload_page' %}
         <input type="hidden" name="return_to" value="back" />
@@ -79,14 +75,11 @@
       <input name="province" type="hidden" value="{{ customer.default_address.province }}" > 
       <input name="zip" type="hidden" value="{{ customer.default_address.zip }}" >
       {% include 'bold-ro' with product %}
-      <button type="submit" name="add" class="action_button add_to_cart addtocart" data-label={{ add_to_cart_label | json }}><span class="text">{{ add_to_cart_label }}</span></button>
+      <button style ="display:inline-block !important;" type="submit" name="add" class="action_button add_to_cart addtocart" data-label={{ add_to_cart_label | json }}><span class="text">{{ add_to_cart_label }}</span></button>
       <!-- bold-ro-liquid --> <div class="bold_add_to_orders" style="display: none;"> </div> <!-- bold-ro-liquid --> 
     </div>  
   </form>
-  <!-- <p class="line-item-property__field">
-            <label for="Note">Note to Recipient</label>
-            <textarea id="Note" name="properties[Note]"></textarea>
-  </p> -->
+  
 
   {% if product.variants.size > 1 or product.options.size > 1 %}
     <script type="text/javascript">

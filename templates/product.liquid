@@ -109,6 +109,12 @@
       {% unless collection_handles contains 'coming-soon' %}
         {% include 'product-form' with 'product' %}
       {% endunless %}  
+      <div>
+        <p class="line-item-property__field">
+              <label for="Gift Note">If this is a gift, enter a note here.</label>
+              <textarea id="Note" name="properties[Note]"></textarea>
+        </p>
+      </div>
 
       {% if settings.product_description_position == "bottom" %}
         {% if product.description != blank %}
