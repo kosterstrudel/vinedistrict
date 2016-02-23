@@ -1,6 +1,6 @@
 	<div class="section product_section clearfix" itemscope itemtype="http://schema.org/Product">
     <div class="row">
-      <div id="subSection1" class="subContainer"> 
+      <div id="subSection1" class="subContainer backgroundpattern"> 
         <div class="subContent">  
           {% assign collection_handles = product.collections | map: 'handle' %}
           {% assign variant = product.selected_or_first_available_variant %}
@@ -46,7 +46,7 @@
       <div class="subContent"> 
         <div class="col-centered">
           <div class="row">
-              <div class="six columns alpha subscription_promo">
+              <div class="six columns subscription_promo">
                 <h2>CHOOSE A PLAN</h2>
                 <p>Select the amount of bottles you'd like</p>
               </div>
@@ -60,19 +60,43 @@
         </div>
       </div>
     </div>
-
-
-    <div id="subSection3" class="subContainer">
+    <div id="subSection3" class="subContainer backgroundpattern">
       <div class="subContent"> 
-
-    {% unless collection_handles contains 'coming-soon' %}
-      {% include 'product-form-subscription' with 'product' %}
-    {% endunless %}  
-
+        <div class="col-centered">
+          <div class="row">
+              <div class="six columns subscription_promo">
+                <h2>SET YOUR PREFERENCES</h2>
+                <p>What's your style? Set it and forget it, we'll take care of the rest.</p>
+              </div>
+          </div>
+          <div class="row">
+            <div class="six columns alpha subscription_promo">
+                    
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div id="subSection4" class="subContainer">
+      <div class="subContent">
+          <div class="col-centered">
+            <div class="row">      
+             <div class="six columns subscription_promo">
+                    <h2>WOOT! YOU DID IT. YOU'RE DONE!</h2>
+                    <p>What's your style? Set it and forget it, we'll take care of the rest.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div id="subSection5" class="subContainer">
+      <div class="subContent">       
+        {% unless collection_handles contains 'coming-soon' %}
+          {% include 'product-form-subscription' with 'product' %}
+        {% endunless %}  
       </div>
     </div>
 
-               
     <!-- {% if settings.product_images_position == 'right' %}   
       <div class="{% if settings.product_sidebar %}seven{% else %}nine{% endif %} columns {% if product-images == blank %}{% if settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}{% endif %} mobile_hidden">          
         {% include 'product-images' %}
