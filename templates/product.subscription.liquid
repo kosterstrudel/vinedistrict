@@ -1,126 +1,78 @@
-<!-- <div class="sixteen columns">
-  <div class="clearfix breadcrumb">
-    <div class="nav_arrows">
-      {% if collection.previous_product %}
-        <a href="{{ collection.previous_product }}" title="{{ 'products.general.previous_product_html' | t }}" class="ss-icon prev">&#x25C5;</a>
-      {% endif %}
-
-      {% if collection.next_product %}
-        <a href="{{collection.next_product}}" title="{{ 'products.general.next_product_html' | t }}" class="ss-icon next">&#x25BB;</a>
-      {% endif %}
-    </div>
-
-    {% if settings.product_breadcrumb %}
-      <div class="breadcrumb_text" itemscope itemtype="http://schema.org/BreadcrumbList">
-        <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="item"><span itemprop="name">{{ 'general.breadcrumbs.home' | t }}</span></a></span> 
-        &nbsp;<span class="icon-right-arrow"></span>
-        <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          {% if collection %}
-            <a href="{{ collection.url }}" title="{{ collection.title | escape }}" itemprop="item"><span itemprop="name">{{ collection.title }}</span></a>
-          {% else %}
-            <a href="/collections/all" title="{{ collections.all.title }}">{{ collections.all.title }}</a>     
-          {% endif %}
-        </span>
-        &nbsp;<span class="icon-right-arrow"></span>
-        {{ product.title }}
-      </div>
-    {% endif %}
-  </div>
-</div> -->
-
-<!-- {% if settings.product_sidebar %}
-  {% include 'sidebar' %}
-  <div class="twelve columns">
-    <div class="product-{{ product.id }}">
-{% else %}
-  <div class="sixteen columns">
-    <div class="product-{{ product.id }}">
-{% endif %} -->
-
 	<div class="section product_section clearfix" itemscope itemtype="http://schema.org/Product">
-	             
-    <!-- <div class="sixteen columns {% if product-images == blank %}{% if settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}{% endif %} {% if settings.product_images_position == 'right' %}mobile_only{% endif %}">
-      {% include 'product-images' %}
-    </div> -->
-
-    <div class="sixteen columns hsContent">      
-      {% assign collection_handles = product.collections | map: 'handle' %}
-      {% assign variant = product.selected_or_first_available_variant %}
-      <h1 class="subproduct_name" itemprop="name">{{ product.title }}</h1>
-      {% if settings.display_vendor %}
-        <p class="vendor">
-          <span itemprop="brand">{{ product.vendor | link_to_vendor }}</span>
-        </p>
-      {% endif %}
-
-      <!-- {% if variant.sku != blank and settings.display_sku %}
-        <p class="sku">
-          <span itemprop="sku">{{ variant.sku }}</span>
-        </p>
-      {% endif %} -->
-      
-      <!-- {% if settings.size_chart != blank %}
-        <a href="#size-chart" class="lightbox size_chart">{{ 'products.product.size_chart' | t }} <span class="icon-right-arrow"></span></a>
-      {% endif %} -->
-
-      {% unless collection_handles contains 'coming-soon' %}
-        <div class="extra_margin modal_price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">           
-            <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-            <meta itemprop="seller" content="{{ shop.name | escape }}" />
-            <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
-            <meta itemprop="itemCondition" content="New" />
-
-            <span class="sold_out">{% if variant.available == false %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
-            <span itemprop="price" content="{{ variant.price | money_without_currency }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
-              <span class="current_price">
-                {% if variant.available %}
-                  {% if variant.price > 0 %} 
-                    {{ variant.price | money }} 
-                  {% else %}
-                    {{ settings.free_price_text }}
-                  {% endif %}
-                {% endif %}
-              </span>
-            </span>
-            <!-- <span class="was_price">
-            {% if variant.price < variant.compare_at_price and variant.available %}
-              {{ variant.compare_at_price | money }}
-            {% endif %}
-            </span>
-            <span class="simpledivider"></span>
-            <span class="current_points">RATING: 95.3</span> -->
-            <!-- <div id="sharecontainer">
-              <div class="share-button"></div>
-            </div>   -->                  
-        </div>
-        
-        {% include 'product-notify-me' %}
-      {% endunless %}
-
-      {% if settings.product_description_position == "top" %}
-        {% if product.description != blank %}
+    <div class="row">
+      <div id="subSection1" class="subContainer"> 
+        <div class="subContent">  
+          {% assign collection_handles = product.collections | map: 'handle' %}
+          {% assign variant = product.selected_or_first_available_variant %}
+          <h1 class="subproduct_name" itemprop="name">{{ product.title }}</h1>
+          {% if settings.display_vendor %}
+            <p class="vendor">
+              <span itemprop="brand">{{ product.vendor | link_to_vendor }}</span>
+            </p>
+          {% endif %}
          <div class="description">
          The best wines, delivered straight to your door. Set up your subscription today and have win all day, err day.
          </div>
-       {% endif %}
-      {% endif %}
+          <div class="container row">
+            <div class="sixteen columns center"> 
+              <div class="col-centered">
+                <div class="two columns alpha subscription_promo">
+                    <img src="{{ 'cancel_card_sub.png' | asset_url }}" alt="Cancel your subscription at any time" />
+                    <h6>Cancel Anytime</h6>
+                </div>
+                <div class="two columns subscription_promo">
+                    <img src="{{ 'discount_subscription.png' | asset_url }}" alt="15 percent discount" />
+                    <h6>15% discount on every subscription</h6>
+                </div>   
+                <div class="two columns subscription_promo">
+                    <img src="{{ 'Friendly_Email_Reminders.png' | asset_url }}" alt="friendly email reminders" />
+                    <h6>Friendly email reminders</h6>
+                </div>   
+                <div class="two columns subscription_promo">
+                    <img src="{{ 'Cellar_management.png' | asset_url }}" alt="manage it in your cellar" />
+                    <h6>Manages your bottles in your cellar</h6>
+                </div>   
+                <div class="two columns omega subscription_promo">
+                    <img src="{{ 'happiness_guaranteed.png' | asset_url }}" alt="happiness guaranteed" />
+                    <h6>Happiness Guaranteed</h6>
+                </div>   
+              </div>         
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div id="subSection2" class="subContainer">
+      <div class="subContent"> 
+        <div class="col-centered">
+          <div class="row">
+              <div class="six columns alpha subscription_promo">
+                <h2>CHOOSE A PLAN</h2>
+                <p>Select the amount of bottles you'd like</p>
+              </div>
+          </div>
+          <div class="row">
+            <div class="six columns alpha subscription_promo">
+                      <img src="{{ 'cancel_card_sub.png' | asset_url }}" alt="Cancel your subscription at any time" />
+                      <h6>Cancel Anytime</h6>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
 
-      {% unless collection_handles contains 'coming-soon' %}
-        {% include 'product-form-subscription' with 'product' %}
-      {% endunless %}  
 
-      {% if settings.product_description_position == "bottom" %}
-        {% if product.description != blank %}
-         <div class="description" itemprop="description">
-          {{ product.description | split: '<!-- split -->' | first }}
-         </div>
-        {% endif %}
-      {% endif %}
+    <div id="subSection3" class="subContainer">
+      <div class="subContent"> 
 
-      {% if settings.display_collections or settings.display_tags or settings.display_type %}
-       <hr />
-      {% endif %}
-         
+    {% unless collection_handles contains 'coming-soon' %}
+      {% include 'product-form-subscription' with 'product' %}
+    {% endunless %}  
+
+      </div>
+    </div>
+
+               
     <!-- {% if settings.product_images_position == 'right' %}   
       <div class="{% if settings.product_sidebar %}seven{% else %}nine{% endif %} columns {% if product-images == blank %}{% if settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}{% endif %} mobile_hidden">          
         {% include 'product-images' %}

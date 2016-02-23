@@ -35,6 +35,7 @@ Description: Shopify Theme (http://www.shopify.com/?ref=out-of-the-sandbox)
   background: rgba($color, $opacity);
 }
 
+
 /* #Reset & Basics
 ================================================== */
   html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -5058,13 +5059,15 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
   #slide-6 .hsContainer { height: {{ settings.image_6_height | divided_by: 1.5 }}px }  
   #slide-blog .hsContainer, #slide-article .hsContainer { height: {{ settings.image_blog_height | divided_by: 1.5 }}px }  
   #slide-contact .hsContainer { height: {{ settings.image_contact_height | divided_by: 1.5 }}px }    
-  #slide-collection .hsContainer { height: {{ settings.image_collection_height | divided_by: 1.5 }}px }    
+  #slide-collection .hsContainer { height: {{ settings.image_collection_height | divided_by: 1.5 }}px }  
 
+  
   .hsContainer a.action_button {
     padding: 2px 25px;
     font-size: {{ settings.button_font_size | minus: 2 }}px;
     margin-top: 25px;
   }
+
 }
 
 @media only screen
@@ -5348,6 +5351,140 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "brandon_grotesquebold", Arial, sans-serif;;
 
 }
+
+/*Subscription Styles*/
+
+
+
+
+.subscription_promo img {
+  max-height: 40px; 
+}
+
+.subscription_promo h6 {
+  color:#383f4a;
+  text-transform: uppercase;
+  font-size: .8em;
+  padding-top: 15px;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    margin: 0 auto;    
+} 
+
+/*Subscription Div Specific Styles & Layouts*/
+
+
+.subContainer {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  opacity: 1;
+  z-index: 1;
+}
+
+.subContent {
+  max-width: 1180px;
+  margin: -150px auto 0 auto;
+  display: table-cell;
+  vertical-align: bottom;
+  text-align: center;
+  float: none;
+}
+
+.subContent h1, .subContent h2, .subContent h6 {
+  margin: 0;
+}
+
+#subSection1.subContainer {
+  height: 410px; 
+}
+
+#subSection2.subContainer {
+  height: auto;
+  background-color: #383b50;
+  padding: 2em 0;
+}
+
+#subSection2 h2 {
+  color:#ffffff;
+  text-transform: uppercase;
+  padding-top: 15px;
+}
+
+#subSection2 h6 {
+  color:#ffffff;
+  text-transform: uppercase;
+  font-size: .8em;
+  padding-top: 15px;
+}
+
+#subSection2 p {
+  color: #ffffff;
+}
+
+#subSection3.subContainer {
+  height: auto;
+}
+
+.subContainer .left {
+  text-align: left;
+  padding-left: 60px;
+  float: none;
+}
+.subContainer .right {
+  text-align: right;
+  padding-right: 60px;
+  float: none;
+}
+
+/* Subscription Customization breakpoint Settings */
+
+
+@media only screen and (max-width: 767px) {
+ /* subscription customization grid */
+  #subSection1.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
+  #subSection2.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
+}
+
+
+/* Subscription Styling */
+
+.subContainer a.action_button {
+  padding: 5px 40px;
+}
+.sub_bcgrepeat {
+  background-position: center center;
+  background-repeat: repeat;
+  {% if settings.parallax_scrolling %}
+    background-attachment: fixed;
+  {% else %}
+    background-attachment: scroll;
+  {% endif %}
+  background-size: auto;
+}
+
+.sub_bcg {
+  background-position: center center;
+  background-repeat: no-repeat;
+ {% if settings.parallax_scrolling %}
+   background-attachment: fixed;
+ {% else %}
+   background-attachment: scroll;
+ {% endif %}
+  background-size: cover;
+
+}
+
+
+
+
+
+
 
 
 

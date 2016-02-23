@@ -57,6 +57,8 @@
   </head>
   {% if template contains "index" %}
     {% assign feature_image = true %}
+  {% elsif template contains "subscription" %}
+    {% assign feature_image = true %}
   {% elsif template contains "collection" and settings.slideshow_collection_enabled %}    
     {% assign feature_image = true %}    
   {% elsif template contains "blog" and settings.slideshow_blog_enabled %}
