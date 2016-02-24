@@ -10,6 +10,7 @@ $(function() {
   {% if settings.homepage_arrow %}
     $(".scroll-arrow").smoothScroll();
   {% endif %}
+  $(".scroll_button").smoothScroll();
   $(".product_slider img").unveil(200);
   $(".thumbnail img, .cart_page_image img").unveil(400, function() {
     $(this).load(function() {
@@ -165,14 +166,70 @@ $(function() {
     return false;
   });
 
-  $(document).ready(function(){
+  // Gift Function
 
-   $('#gift_field').hide();
-   $('#is-this-a-gift').click(function() {
-    $("#gift_field").toggle(this.checked);
-});   
+	$(document).ready(function(){
 
-});
+	   $('#gift_field').hide();
+	   $('#is-this-a-gift').click(function() {
+	    $("#gift_field").toggle(this.checked);
+		}); 
+
+
+		$(".subscription_promo_bottle_button").click(function (e) {
+	  	e.preventDefault();
+	    $(".active").removeClass("active");
+	    });
+
+		$("#one_bottle").click(function () {
+		    $(this).addClass("active");	
+		    $(this).children( "h5" ).addClass("active");	    
+		    // Select this
+		    $(".unselected_one").removeClass("active");
+		    $(".selected_one").addClass("active");
+		    // Deselect others
+		    $(".selected_two").removeClass("active");
+		    $(".unselected_two").addClass("active");
+		    $(".selected_three").removeClass("active");
+		    $(".unselected_three").addClass("active");
+
+
+		    // $("#unactive_one, #active_one").toggle();
+		    // $("#active_two, #unactive_two").toggle();
+		}); 
+
+		$("#two_bottles").click(function () {
+		    $(this).addClass("active");
+		    $(this).children( "h5" ).addClass("active");
+		    // Select this
+		    $(".unselected_two").removeClass("active");
+		    $(".selected_two").addClass("active");
+		    // Deselect Others
+		    $(".selected_one").removeClass("active");
+		    $(".unselected_one").addClass("active");
+		    $(".selected_three").removeClass("active");
+		    $(".unselected_three").addClass("active");
+		    // $("#unactive_two, #active_two").toggle();
+
+		});
+
+		$("#three_bottles").click(function () {
+		    $(this).addClass("active");	
+		    $(this).children( "h5" ).addClass("active");	    
+		    // Select this
+		    $(".unselected_three").removeClass("active");
+		    $(".selected_three").addClass("active");
+		    // Deselect others
+		    $(".selected_two").removeClass("active");
+		    $(".unselected_two").addClass("active");
+		    $(".selected_one").removeClass("active");
+		    $(".unselected_one").addClass("active");
+
+
+		    // $("#unactive_one, #active_one").toggle();
+		    // $("#active_two, #unactive_two").toggle();
+		});   
+	}); 
 
   $('#search-toggle, .search-close').on('click', function(e) {
     $('.search-close, .search-submit').css('padding-top', $('.header').height() + 50 + 'px')
@@ -399,6 +456,11 @@ $(function() {
       });
   {% endraw %}  
 
+ /*============================================================================
+    Start of basic hover/active states for subcsription
+  ==============================================================================*/
+
+	
 
   /*============================================================================
     Start of cart-related functionality

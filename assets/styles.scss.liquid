@@ -253,7 +253,7 @@ h1.subproduct_name {
   margin-bottom: 15px;
   color:#333333;
   text-transform: uppercase; 
-  font-size:2em;
+  font-size:3em;
 }
 h1.article_title { 
   margin-bottom: 5px; }
@@ -5203,9 +5203,17 @@ p .subtitle {
 
 }
 
+// Textures Tabs and Backgrounds
+
 .backgroundpattern {
   background-image: url("{{ 'img-noise-350x350_a.png' | asset_url }}");
 }
+
+.tabnumber_blue {
+  background-image: url("{{ 'blue_tab_rounded.png' | asset_url }}");
+}
+
+
 
 // Promo custom Pod customizations
 
@@ -5354,9 +5362,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /*Subscription Styles*/
 
-
-
-
 .subscription_promo img {
   max-height: 40px; 
 }
@@ -5372,8 +5377,143 @@ h1, h2, h3, h4, h5, h6 {
     display:inline-block;
     float:none;
     margin: 0 auto;    
-} 
+}  
 
+.subContent a.active_sub_button {
+    background: #ff5a5f;
+    color: #ffffff;
+    border: 0;
+    padding: 10px 20px;
+    font-style: normal;
+    text-align: center;
+    cursor: pointer;
+    font-family: "Gotham Rounded SSm A", "Gotham Rounded SSm B", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    display: inline-block;
+    -webkit-transition: all 200ms ease 0s;
+    -moz-transition: all 200ms ease 0s;
+    -ms-transition: all 200ms ease 0s;
+    -o-transition: all 200ms ease 0s;
+    transition: all 200ms ease 0s;
+    -webkit-appearance: none;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.unselected_one, .unselected_two, .unselected_three {
+  display:none;
+}
+
+.unselected_one.active, .unselected_two.active, .unselected_three.active {
+    display:inline-block;
+}
+
+.selected_one, .selected_two, .selected_three  {
+    display:none;
+}
+
+.selected_one.active, .selected_two.active, .selected_three.active {
+  display:inline-block;
+
+}
+
+h5.active {
+  color:#fcc154 !important;
+}
+
+// .active_one.active {
+
+// }
+
+// .unactive_two {
+//     display:inline-block;
+// }
+
+// img#active_two {
+//     display:none;
+// }
+
+
+
+
+.subscription_promo_bottle_button.active a {
+    background: #ff5a5f;
+    color: #ffffff;
+    border: 0;
+    padding: 10px 20px;
+    font-style: normal;
+    text-align: center;
+    cursor: pointer;
+    font-family: "Gotham Rounded SSm A", "Gotham Rounded SSm B", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    display: inline-block;
+    -webkit-transition: all 200ms ease 0s;
+    -moz-transition: all 200ms ease 0s;
+    -ms-transition: all 200ms ease 0s;
+    -o-transition: all 200ms ease 0s;
+    transition: all 200ms ease 0s;
+    -webkit-appearance: none;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .subscription_promo_bottle_button a {
+    background: transparent;
+    outline: 2px solid #ff5a5f;
+    color: #ff5a5f;
+    border: 0;
+    padding: 10px 20px;
+    font-style: normal;
+    text-align: center;
+    cursor: pointer;
+    font-family: "Gotham Rounded SSm A", "Gotham Rounded SSm B", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    display: inline-block;
+    -webkit-transition: all 200ms ease 0s;
+    -moz-transition: all 200ms ease 0s;
+    -ms-transition: all 200ms ease 0s;
+    -o-transition: all 200ms ease 0s;
+    transition: all 200ms ease 0s;
+    -webkit-appearance: none;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  
 /* Subscription Div Specific Styles & Layouts */
 
 
@@ -5403,10 +5543,38 @@ h1, h2, h3, h4, h5, h6 {
 // Subsection 1 styles
 
 #subSection1.subContainer {
-  height: 410px; 
+  height: 450px; 
+}
+
+#subSection1 img {
+  max-height: 40px; 
 }
 
 // Subsection 2 Styles 
+
+#pagecontent2:before {
+  display: block; 
+  content: " "; 
+  margin-top: -61px; 
+  height: 61px; 
+  visibility: hidden; 
+
+}
+
+div.tabContainer:before{
+  background-image: url("{{ 'blue_tab_rounded.png' | asset_url }}");
+  bottom: 5px;
+  content: "";
+  height: 38px;
+  position: absolute;
+  left: 50%;
+  margin-left: -44px;
+  width: 44px;
+}
+
+#subSection2 img {
+  max-height: 150px; 
+}
 
 #subSection2.subContainer {
   height: auto;
@@ -5417,6 +5585,13 @@ h1, h2, h3, h4, h5, h6 {
 #subSection2 h2 {
   color:#ffffff;
   text-transform: uppercase;
+  padding-top: 15px;
+}
+
+#subSection2 h5 {
+  color:#ffffff;
+  text-transform: uppercase;
+  font-size: 2em;
   padding-top: 15px;
 }
 

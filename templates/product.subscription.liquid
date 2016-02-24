@@ -39,24 +39,56 @@
               </div>         
             </div>
           </div>
+          <div class="container">
+            <div class="sixteen columns center">
+              <div class="col-centered">
+                <a href="#pagecontent2" class="active_sub_button scroll_button">GET STARTED</a>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
-    
+    <div class="tabContainer subContainer">
+      <div class="col-centered tabnumber_blue">
+      </div>
+    </div>
+    <div id="pagecontent2"></div>
     <div id="subSection2" class="subContainer">
       <div class="subContent"> 
         <div class="col-centered">
+
           <div class="row">
-              <div class="six columns subscription_promo">
+              <div class="col-centered subscription_promo">
                 <h2>CHOOSE A PLAN</h2>
-                <p>Select the amount of bottles you'd like</p>
+                <p>Select the amount of bottles you'd like.</p>
               </div>
           </div>
-          <div class="row">
-            <div class="six columns alpha subscription_promo">
-                      <img src="{{ 'cancel_card_sub.png' | asset_url }}" alt="Cancel your subscription at any time" />
-                      <h6>Cancel Anytime</h6>
+          <div class="container">
+            <div class="row col-centered">
+              <div id="one_bottle" class="four columns alpha subscription_promo_bottle_button">
+                        <img class="selected_one" src="{{ 'single_bottle.png' | asset_url }}"  alt="Cancel your subscription at any time" />                     
+                        <img class="unselected_one active" src="{{ 'unactive_one_bottle.png' | asset_url }}" alt="Cancel your subscription at any time" />
+                        <h5>One Bottle</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidienim ad minim veniam, quis nostrud exercit.</p>
+                        <a href="#bottle" id="bottle_button">SEND ONE BOTTLE</a>
+              </div>
+              <div id="two_bottles" class="four columns subscription_promo_bottle_button">
+                        
+                        <img class="selected_two" class="" src="{{ 'active_two_bottles.png' | asset_url }}"  alt="Cancel your subscription at any time" /> 
+                        <img class="unselected_two active" src="{{ 'two_bottles.png' | asset_url }}" alt="Cancel your subscription at any time" />
+                        <h5>Two Bottles</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidienim ad minim veniam, quis nostrud exercit.</p>
+                        <a href="#bottle" id="bottle_button">SEND TWO BOTTLES </a>
+              </div>
+              <div id="three_bottles" class="four columns omega subscription_promo_bottle_button">
+                        <img class="selected_three" class="" src="{{ 'active_three_bottles.png' | asset_url }}"  alt="Cancel your subscription at any time" /> 
+                        <img class="unselected_three active" src="{{ 'three_bottles.png' | asset_url }}" alt="Cancel your subscription at any time" />        
+                        <h5>Three Bottles</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidienim ad minim veniam, quis nostrud exercit.</p>
+                        <a href="#bottle" id="bottle_button">SEND THREE BOTTLES </a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -77,6 +109,7 @@
         </div>
       </div>
     </div>
+    
     <div id="subSection4" class="subContainer">
       <div class="subContent">
           <div class="col-centered">
