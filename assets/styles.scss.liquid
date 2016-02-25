@@ -5366,6 +5366,11 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 40px; 
 }
 
+.subscription_promo_container {
+  width:90%;
+
+}
+
 .subscription_promo h6 {
   color:#383f4a;
   text-transform: uppercase;
@@ -6933,47 +6938,50 @@ body .ui-tooltip {
 }
 
 .sub_title_container {
-    width: 70px;
-    display: inline;
+    width: 8%;
     float: left;
-    margin-left: 10px;
-    margin-right: 10px;
+}
 
+.sub_preference_slider_container {
+    width:80%;
+    float:left;
+    min-width: 500px;
 }
 
 #sliderpreferences_white_red, #sliderpreferences_dry_sweet, #sliderpreferences_complex_simple  {
   display:inline-block;
-  min-width:90%;
+  min-width:90%; 
 }
 
 #subSection3 span.title_slider_left {
     // text-align: left;
     display: inline;
-    margin: 0 10px 0 0;
     float: right;
 }
 
 #subSection3 span.title_slider_right {
     // text-align: right;
     display: inline;
-    margin: 0 0 0 10px;
     float:left;
 }
 
 
 @media only screen and (max-width: 767px) {
-    #sliderpreferences_white_red {
-    display:inline-block;
-    min-width:55%;
+    .sub_preference_slider_container {
+    width:70%;
+    float:left;
+    min-width: 250px;
+    }
+
+    #two_bottles, #three_bottles {
+      margin: 3em 0 0 0; 
 
     }
 
-    // #subSection3 span.title_slider_left {
-    // // text-align: left;
-    // display: inline;
-    // margin: -3em 10px 0 0;
-    // float: right;
-    // }
+    .sub_title_container {
+    width: 15%;
+    float: left;
+    }
 
 }
 
