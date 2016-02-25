@@ -5070,9 +5070,7 @@ html:hover [class^="ss-"]{-ms-zoom: 1;}
 
 }
 
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)  {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  {
   .bcg {
     {% if settings.slideshow_images_crop %}
       background-size: cover;
@@ -5378,6 +5376,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 15px;
 }
 
+.sub_selection {
+  color:#fcc154;
+}
+
 .col-centered {
     display:inline-block;
     float:none;
@@ -5417,16 +5419,26 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+h5.selected_nobr {
+  white-space: nowrap;
+}
+
 .unselected_one, .unselected_two, .unselected_three {
   display:none;
 }
 
 .unselected_one.active, .unselected_two.active, .unselected_three.active {
     display:inline-block;
+    color: #fbc05e;
 }
 
 .selected_one, .selected_two, .selected_three  {
     display:none;
+}
+
+h5.selected_one.active, h5.selected_two.active, h5.selected_three.active {
+  display:block;
+
 }
 
 .selected_one.active, .selected_two.active, .selected_three.active {
@@ -5519,8 +5531,7 @@ h5.active {
   }
 
   
-/* Subscription Div Specific Styles & Layouts */
-
+/* Subscription Div Layouts */
 
 .subContainer {
   display: table;
@@ -5596,9 +5607,17 @@ div.tabContainer:before{
 #subSection2 h5 {
   color:#ffffff;
   text-transform: uppercase;
-  font-size: 2em;
+  font-size: 1,5em;
   padding-top: 15px;
 }
+
+#subSection4 h5 {
+  text-transform: uppercase;
+  font-size: 1em;
+  padding-top: 15px;
+}
+
+
 
 #subSection2 h6 {
   color:#ffffff;
@@ -5645,7 +5664,7 @@ div.tabContainer:before{
   padding: 2em 0;
 }
 
-#subSection4 h2 {
+#subSection4 h2, h5.final_settings {
   color:#ffffff;
   text-transform: uppercase;
   padding-top: 15px;
@@ -5674,18 +5693,6 @@ div.tabContainer:before{
   float: none;
 }
 
-/* Subscription Customization breakpoint Settings */
-
-
-@media only screen and (max-width: 767px) {
- /* subscription customization grid */
-  #subSection1.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
-  #subSection2.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
-}
-
-
-/* Subscription Styling */
-
 .subContainer a.action_button {
   padding: 5px 40px;
 }
@@ -5711,6 +5718,151 @@ div.tabContainer:before{
   background-size: cover;
 
 }
+
+// Mini Preferences Grid
+
+.sub_title_container {
+    width: 8%;
+    float: left;
+}
+
+.sub_preference_slider_container {
+    width:80%;
+    float:left;
+    min-width: 500px;
+}
+
+#sliderpreferences_white_red, #sliderpreferences_dry_sweet, #sliderpreferences_complex_simple  {
+  display:inline-block;
+  min-width:90%; 
+}
+
+#subSection3 span.title_slider_left {
+    // text-align: left;
+    display: inline;
+    float: right;
+}
+
+#subSection3 span.title_slider_right {
+    // text-align: right;
+    display: inline;
+    float:left;
+}
+
+// Mini Subscription Final Grid
+
+.subContainerfinal {
+  max-width:700px;
+}
+
+#subSection4 p.glyph {
+  font-size: 50px;
+  line-height: 2.5em;
+  color: #62666b;
+}
+
+.subContainerfinal:after { 
+  content: "\0020"; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden; 
+}
+
+.one-fifth-percent {
+  width:17%;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.subContainerfinal h5.active {
+  color:#62666b;
+}
+
+h5.final_option {
+  display:none;
+}
+
+h5.final_option.select_amount {
+  display:inline-block;
+  color:#62666b;
+}
+
+
+/* Subscription Customization breakpoint Settings */
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+ /* subscription customization grid */
+  #subSection1.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
+  #subSection2.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
+
+  .sub_preference_slider_container {
+  width:70%;
+  float:left;
+  min-width: 250px;
+  }
+
+  h5.selected_nobr {
+  white-space: normal;
+} 
+
+  #two_bottles, #three_bottles {
+    margin: 3em 0 0 0; 
+
+  }
+
+  .sub_title_container {
+  width: 15%;
+  float: left;
+  }
+
+  p.glyph {
+  font-size: 50px;
+  line-height: 3em
+}
+
+}
+
+@media only screen and (max-width: 767px) {
+ /* subscription customization grid */
+  #subSection1.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
+  #subSection2.subContainer { height: {{ 500 | divided_by: 2.5 }}px }
+
+  .sub_preference_slider_container {
+  width:70%;
+  float:left;
+  min-width: 250px;
+  }
+
+  #two_bottles, #three_bottles {
+    margin: 3em 0 0 0; 
+
+  }
+
+  .sub_title_container {
+  width: 15%;
+  float: left;
+  }
+
+  p.glyph {
+  font-size: 50px;
+  line-height: 1.5em
+}
+
+
+  }
+
+
+
+
+
+
+
+
+
+
 
 /*! jQuery UI - v1.11.4 - 2015-03-11
 
@@ -6936,60 +7088,4 @@ body .ui-tooltip {
   filter: Alpha(Opacity=20); /* support: IE8 */
   border-radius: 5px;
 }
-
-.sub_title_container {
-    width: 8%;
-    float: left;
-}
-
-.sub_preference_slider_container {
-    width:80%;
-    float:left;
-    min-width: 500px;
-}
-
-#sliderpreferences_white_red, #sliderpreferences_dry_sweet, #sliderpreferences_complex_simple  {
-  display:inline-block;
-  min-width:90%; 
-}
-
-#subSection3 span.title_slider_left {
-    // text-align: left;
-    display: inline;
-    float: right;
-}
-
-#subSection3 span.title_slider_right {
-    // text-align: right;
-    display: inline;
-    float:left;
-}
-
-
-@media only screen and (max-width: 767px) {
-    .sub_preference_slider_container {
-    width:70%;
-    float:left;
-    min-width: 250px;
-    }
-
-    #two_bottles, #three_bottles {
-      margin: 3em 0 0 0; 
-
-    }
-
-    .sub_title_container {
-    width: 15%;
-    float: left;
-    }
-
-}
-
-
-
-
-
-
-
-
 

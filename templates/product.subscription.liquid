@@ -158,26 +158,60 @@
       </div>
     </div>
     
-    <div id="subSection4" class="subContainer">
+    <div id="subSection4" class="subContainer final_settings">
       <div class="subContent">
-          <div class="col-centered">
-            <div class="row">      
-             <div class="six columns subscription_promo">
-                    <h2>WOOT! YOU DID IT. YOU'RE DONE!</h2>
-                    <p>What's your style? Set it and forget it, we'll take care of the rest.</p>
+            <div class="row">
+                <div class="col-centered">   
+                   <div class="six columns subscription_promo">
+                          <h2>WOOT! YOU DID IT. YOU'RE DONE!</h2>
+                          <p>Cheers! You just made the best wine-related decision of your entire life. Way to go. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-centered">       
+                  {% unless collection_handles contains 'coming-soon' %}
+                    {% include 'product-form-subscription' with 'product' %}
+                  {% endunless %}  
+              </div>
+            </div>          
+            <div class="row">
+              <div class="col-centered subContainerfinal">
+                  <div class="one-fifth-percent alpha">
+                          <img class="selected_one" src="{{ 'single_bottle.png' | asset_url }}"  alt="Cancel your subscription at any time" />
+                          <img class="selected_two" class="" src="{{ 'active_two_bottles.png' | asset_url }}"  alt="Cancel your subscription at any time" />
+                          <img class="selected_three" class="" src="{{ 'active_three_bottles.png' | asset_url }}"  alt="Cancel your subscription at any time" />
+                          <img class="unselected_one_final active" src="{{ 'unactive_one_bottle.png' | asset_url }}" alt="Cancel your subscription at any time" />
+                          
+                          <h5 id="final_option" class="final_option select_amount">Select Amount Above</h5>
+                          <h5 class="selected_one selected_nobr">One Bottle</h5>
+                          <h5 class="selected_two selected_nobr">Two Bottles</h5>
+                          <h5 class="selected_three selected_nobr">Three Bottles</h5>                        
+                  </div>                 
+                  <div class="one-fifth-percent">
+                    <p class="glyph">+</p>
+                  </div>
+                   <div class="one-fifth-percent alpha">
+                          
+                          <img src="{{ 'final_settings.png' | asset_url }}" alt="Cancel your subscription at any time" />
+                          <h5 class="final_settings">Settings</h5>
+                                                  
+                  </div>
+                  <div class="one-fifth-percent">
+                     <p class="glyph">=</p>
+                  </div>
+                  <div class="one-fifth-percent omega">
+                    <img src="{{ 'curated_love.png' | asset_url }}" alt="Cancel your subscription at any time" />
+                    <h5 class="final_settings">curated love</h5>
+
+                  </div>
               </div>
             </div>
-          </div>
+            
       </div>
     </div>
-    <div id="subSection5" class="subContainer">
-      <div class="subContent">       
-        {% unless collection_handles contains 'coming-soon' %}
-          {% include 'product-form-subscription' with 'product' %}
-        {% endunless %}  
-      </div>
-    </div>
-
+</div>
+    
     <!-- {% if settings.product_images_position == 'right' %}   
       <div class="{% if settings.product_sidebar %}seven{% else %}nine{% endif %} columns {% if product-images == blank %}{% if settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}{% endif %} mobile_hidden">          
         {% include 'product-images' %}

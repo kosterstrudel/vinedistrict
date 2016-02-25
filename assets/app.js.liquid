@@ -179,7 +179,9 @@ $(function() {
 		$(".subscription_promo_bottle_button").click(function (e) {
 	  	e.preventDefault();
 	    $(".active").removeClass("active");
+	    $("#final_option").removeClass("select_amount");
 	    });
+
 
 		$("#one_bottle").click(function () {
 		    $(this).addClass("active");	
@@ -192,6 +194,8 @@ $(function() {
 		    $(".unselected_two").addClass("active");
 		    $(".selected_three").removeClass("active");
 		    $(".unselected_three").addClass("active");
+		    $(".unselected_one_final").removeClass("active");
+		    $(".unselected_one_final").addClass("hidden");
 
 
 		    // $("#unactive_one, #active_one").toggle();
@@ -209,6 +213,8 @@ $(function() {
 		    $(".unselected_one").addClass("active");
 		    $(".selected_three").removeClass("active");
 		    $(".unselected_three").addClass("active");
+		    $(".unselected_one_final").removeClass("active");
+		    $(".unselected_one_final").addClass("hidden");
 		    // $("#unactive_two, #active_two").toggle();
 
 		});
@@ -224,6 +230,8 @@ $(function() {
 		    $(".unselected_two").addClass("active");
 		    $(".selected_one").removeClass("active");
 		    $(".unselected_one").addClass("active");
+		    $(".unselected_one_final").removeClass("active");
+		    $(".unselected_one_final").addClass("hidden");
 
 
 		    // $("#unactive_one, #active_one").toggle();
